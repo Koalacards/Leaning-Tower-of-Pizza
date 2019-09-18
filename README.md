@@ -1,2 +1,2 @@
 # Leaning-Tower-of-Pizza
-A 2D arcade game that I am currently working on, using correct Object-oriented design that I learned through my new college classes.
+A 2D arcade game that I am currently working on, using correct Object-oriented design that I learned through my new college classes. Features a simple one-tap design and a classic stacking mechanic. Animations of clouds, the pipe birds as well as an achievement system to unlock different styles of pizza are the next step. I hope to be done with this project in the next month or two.

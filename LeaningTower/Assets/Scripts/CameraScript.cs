@@ -26,6 +26,9 @@ public class CameraScript : MonoBehaviour
     //The camera component of this object
     private Camera attachedCamera;
 
+
+
+
     // Start is called before the first frame update
     void Start()
     {

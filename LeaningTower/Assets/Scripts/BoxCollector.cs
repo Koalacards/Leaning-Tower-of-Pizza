@@ -28,6 +28,8 @@ public class BoxCollector : MonoBehaviour
     //Boolean to make sure that the gameOver method is only called once
     private bool gameOverBool;
 
+    //Array of clouds that can be spawned
+    public GameObject[] clouds;
     
 
     // Start is called before the first frame update
@@ -87,6 +89,27 @@ public class BoxCollector : MonoBehaviour
     //Ends the game - the player has lost
     public void gameOver() {
         mainCamera.GameEndView(this.numScrolls);
+    }
+
+    //Spawns a cloud
+    void spawnCloud() {
+        float rand = Random.Range(0.0f, 1.0f);
+        GameObject cloud = Instantiate(clouds[Random.Range(0, clouds.Length)]);
+        if (rand > 0.5f) {
+            if (numScrolls == 0) {
+                cloud.gameObject.transform.position = new Vector3(-4, Random.Range(1.0f, 4.0f), 0);
+            } else {
+                cloud.gameObject.transform.position = new Vector3(-4, 
+                Random.Range((numScrolls - 1) * 4, (numScrolls + 1) * 4), 0);
+            }
+        } else { // rand <= 0.5f
+            if (numScrolls == 0) {
+                cloud.gameObject.transform.position = new Vector3(4, Random.Range(1.0f, 4.0f), 0);
+            } else {
+                cloud.gameObject.transform.position = new Vector3(4, 
+                Random.Range(((numScrolls - 1) * 4), ((numScrolls + 1) * 4)), 0);
+            }
+        }
     }
 }
 

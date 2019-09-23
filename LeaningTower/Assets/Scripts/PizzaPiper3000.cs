@@ -13,11 +13,15 @@ public class PizzaPiper3000 : MonoBehaviour
     //determines whether the pipe can move or not
     private bool canMove;
 
+    //Animator for this pipe
+    private Animator pipeAnim;
+
 
     // Start is called before the first frame update
     void Start()
     {
         canMove = true;
+        pipeAnim = this.gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -57,6 +61,8 @@ public class PizzaPiper3000 : MonoBehaviour
             //This will be changed to 0 by BoxCollector
             PlayerPrefs.SetInt("CanRelease", 1);
         }
+
+        StartCoroutine(dropBox());
     }
 
     //Increases the velocity of the pipe (to be called by CameraScript)
@@ -76,5 +82,14 @@ public class PizzaPiper3000 : MonoBehaviour
     //Allows the pipe to move
     public void allowPipeMovement() {
         canMove = true;
+    }
+
+    //Stops the pipe when a box is being dropped and changes the animation to the box dropping animation
+    public IEnumerator dropBox() {
+        canMove = false;
+        pipeAnim.SetBool("IsPipeStopped", true);
+        yield return new WaitForSecondsRealtime(0.15f);
+        canMove = true;
+        pipeAnim.SetBool("IsPipeStopped", false);
     }
 }

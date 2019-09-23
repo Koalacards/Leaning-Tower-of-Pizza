@@ -92,4 +92,14 @@ public class PizzaPiper3000 : MonoBehaviour
         canMove = true;
         pipeAnim.SetBool("IsPipeStopped", false);
     }
+
+    //Stops the animation of the pipe for scrolling
+    public void stopAnim() {
+        this.pipeAnim.enabled = false;
+    }
+
+    //Starts the animation after the pipe is done scrolling
+    public void startAnim() {
+        this.pipeAnim.enabled = true;
+    }
 }

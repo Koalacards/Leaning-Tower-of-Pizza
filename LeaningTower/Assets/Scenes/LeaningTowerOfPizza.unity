@@ -313,6 +313,8 @@ GameObject:
   - component: {fileID: 590861825}
   - component: {fileID: 590861824}
   - component: {fileID: 590861827}
+  - component: {fileID: 590861829}
+  - component: {fileID: 590861828}
   m_Layer: 0
   m_Name: pipeBoundary
   m_TagString: PipeBoundary
@@ -411,6 +413,58 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &590861828
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590861823}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -3.01, y: 3.6019428}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.15350819, y: 0.9232631}
+  m_EdgeRadius: 0
+--- !u!61 &590861829
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590861823}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 3.01, y: 3.6019428}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.15350819, y: 0.9232631}
+  m_EdgeRadius: 0
 --- !u!1 &944385049
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +479,7 @@ GameObject:
   - component: {fileID: 944385052}
   - component: {fileID: 944385053}
   - component: {fileID: 944385054}
+  - component: {fileID: 944385055}
   m_Layer: 0
   m_Name: PizzaPiper3000
   m_TagString: Pipe
@@ -491,7 +546,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 944385049}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.77, y: 3.16, z: 10}
+  m_LocalPosition: {x: 0, y: 3.16, z: 10}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children:
   - {fileID: 1551530435}
@@ -562,6 +617,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &944385055
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944385049}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 61cde53256856ec489d15a1aa4b440df, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1317998816
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,7 +770,7 @@ Transform:
   m_GameObject: {fileID: 1551530434}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.045603752, y: 4.469192, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.3, z: 1}
   m_Children: []
   m_Father: {fileID: 944385051}
   m_RootOrder: 0
@@ -946,6 +1020,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a9b3fd5c2626345abf7e14c21037a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sizeInc: 2
+  yInc: 2
+  attachedCamera: {fileID: 0}
 --- !u!1 &1835575845
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,10 +1222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420030}
-  mainCameraCanvas: {fileID: 1576621385}
   grass: {fileID: 565999292307014296, guid: be47adae8977a144882bf418122d5c4c, type: 3}
-  endCamera: {fileID: 1708239806}
-  endCameraCanvas: {fileID: 1835575845}
 --- !u!4 &1947978764
 Transform:
   m_ObjectHideFlags: 0
@@ -1353,6 +1427,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 952866121317636650, guid: d385cd01f8eb8f64cb10c4fdacceae5f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 952866121317636650, guid: d385cd01f8eb8f64cb10c4fdacceae5f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 952866121317636650, guid: d385cd01f8eb8f64cb10c4fdacceae5f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 952866120712589298, guid: d385cd01f8eb8f64cb10c4fdacceae5f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d385cd01f8eb8f64cb10c4fdacceae5f, type: 3}

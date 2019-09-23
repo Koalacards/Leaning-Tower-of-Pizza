@@ -7,11 +7,8 @@ public class BoxCollector : MonoBehaviour
     //Boxes that have been dropped
     private List<GameObject> boxes = new List<GameObject>();
 
-    //Access to scroll the camera
+    //Access to scroll the camera and resize it once the game is over
     public CameraScript mainCamera;
-
-    //The canvas corresponding to the camera - used for deactivation
-    public GameObject mainCameraCanvas;
 
     //Boolean to make sure that the camera Scroll method is only called once
     private bool scrollBool;
@@ -28,11 +25,8 @@ public class BoxCollector : MonoBehaviour
     //Grass object
     public GameObject grass;
 
-    //The script attached to the end camera
-    public EndCameraScript endCamera;
-
-    //The canvas corresponding to the end camera- used for deactivation
-    public GameObject endCameraCanvas;
+    //Boolean to make sure that the gameOver method is only called once
+    private bool gameOverBool;
 
     
 
@@ -42,10 +36,7 @@ public class BoxCollector : MonoBehaviour
         PlayerPrefs.SetInt("CanRelease", 0);
         scrollBool = true;
         numScrolls = 0;
-        mainCamera.gameObject.SetActive(true);
-        mainCameraCanvas.gameObject.SetActive(true);
-        endCamera.gameObject.SetActive(false);
-        endCameraCanvas.gameObject.SetActive(false);
+        gameOverBool = false;
     }
 
     // Update is called once per frame
@@ -65,8 +56,9 @@ public class BoxCollector : MonoBehaviour
             topBoxCenter = topBox.gameObject.transform.position.x;
         }
 
-        if ((topBoxCenter < firstBoxCenter - 1) || (topBoxCenter > firstBoxCenter + 1)) {
+        if ((topBoxCenter < firstBoxCenter - 1) || (topBoxCenter > firstBoxCenter + 1) && !gameOverBool) {
             gameOver();
+            gameOverBool = true;
         }
     }
 
@@ -94,11 +86,7 @@ public class BoxCollector : MonoBehaviour
 
     //Ends the game - the player has lost
     public void gameOver() {
-        mainCamera.gameObject.SetActive(false);
-        mainCameraCanvas.gameObject.SetActive(false);
-        endCamera.gameObject.SetActive(true);
-        endCameraCanvas.gameObject.SetActive(true);
-        endCamera.incSize(this.numScrolls);
+        mainCamera.GameEndView(this.numScrolls);
     }
 }
 

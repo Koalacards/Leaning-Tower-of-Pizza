@@ -39,11 +39,14 @@ public class BoxCollector : MonoBehaviour
         scrollBool = true;
         numScrolls = 0;
         gameOverBool = false;
+        StartCoroutine(this.spawnClouds());
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Checks to see if the stack of boxes is above the halfway mark of the screen.
+        //If it is, then the camera scrolls
         if ((this.transform.position.y >= 
         mainCamera.gameObject.transform.position.y) && scrollBool) {
             mainCamera.Scroll();
@@ -52,12 +55,14 @@ public class BoxCollector : MonoBehaviour
             addGrass();
         }
 
+        //Grabs the top box of the stack of boxes
         if (boxes.Count != 0) {
             GameObject topBox = boxes[boxes.Count - 1];
             this.transform.position = new Vector2(0, topBox.gameObject.transform.position.y + .15f);
             topBoxCenter = topBox.gameObject.transform.position.x;
         }
 
+        //Checks to see if the tower is off balance
         if ((topBoxCenter < firstBoxCenter - 1) || (topBoxCenter > firstBoxCenter + 1) && !gameOverBool) {
             gameOver();
             gameOverBool = true;
@@ -93,6 +98,9 @@ public class BoxCollector : MonoBehaviour
 
     //Spawns a cloud
     void spawnCloud() {
+        if(mainCamera.isScrolling()) {
+            return;
+        }
         float rand = Random.Range(0.0f, 1.0f);
         GameObject cloud = Instantiate(clouds[Random.Range(0, clouds.Length)]);
         if (rand > 0.5f) {
@@ -109,6 +117,18 @@ public class BoxCollector : MonoBehaviour
                 cloud.gameObject.transform.position = new Vector3(4, 
                 Random.Range(((numScrolls - 1) * 4), ((numScrolls + 1) * 4)), 0);
             }
+        }
+    }
+
+    //Spawns clouds periodically from time to time
+    IEnumerator spawnClouds() {
+        if (gameOverBool) {
+            
+        } else {
+            float rand = Random.Range(2.0f, 6.0f);
+            yield return new WaitForSecondsRealtime(rand);
+            this.spawnCloud();
+            StartCoroutine(this.spawnClouds());
         }
     }
 }

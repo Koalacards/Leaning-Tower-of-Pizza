@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class CloudScript : MonoBehaviour
 {
@@ -8,12 +9,16 @@ public class CloudScript : MonoBehaviour
     //Velocity of the cloud as it moves across the screen
     private float velocity;
 
+    //This cloud's rigidbody
+    private Rigidbody2D rb;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        velocity = Random.Range(1.0f, 2.0f);
-        if (transform.position.x < 0) {
+        velocity = UnityEngine.Random.Range(0.5f, 1.5f);
+        rb = this.GetComponent<Rigidbody2D>();
+        if (transform.position.x > 0) {
             velocity = velocity * -1;
         } 
     }
@@ -21,7 +26,7 @@ public class CloudScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        this.transform.Translate(Vector2.left * velocity * Time.deltaTime);
+        rb.AddForce(Vector2.right * velocity);
     }
 
     //Destroys this object if it runs into the cloud boundaries on the left and right side of the screen

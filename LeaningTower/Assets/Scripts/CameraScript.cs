@@ -79,4 +79,9 @@ public class CameraScript : MonoBehaviour
             new Vector3(this.transform.position.x, this.transform.position.y + (yInc * numScrolls),
              this.transform.position.z);
     }
+
+    //Determines if this camera is scrolling
+    public bool isScrolling() {
+        return this.scroll;
+    }
 }

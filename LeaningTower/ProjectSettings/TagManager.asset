@@ -45,11 +45,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: canvas
+  - name: Canvas
     uniqueID: 3029598053
+    locked: 0
+  - name: Cloud
+    uniqueID: 3952448297
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: pizzabox
+    uniqueID: 1608028791
     locked: 0
   - name: Pipe
     uniqueID: 3421261425

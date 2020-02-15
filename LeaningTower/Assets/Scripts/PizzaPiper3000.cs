@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class PizzaPiper3000 : MonoBehaviour
 {
     //speed at which the pipe moves
@@ -16,6 +16,9 @@ public class PizzaPiper3000 : MonoBehaviour
     //Animator for this pipe
     private Animator pipeAnim;
 
+    //The text on the pipe telling the score
+    public TextMeshProUGUI scoreText;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +30,7 @@ public class PizzaPiper3000 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        scoreText.text = "" + PlayerPrefs.GetInt("score");
     }
 
     //Calls once per tick consistently

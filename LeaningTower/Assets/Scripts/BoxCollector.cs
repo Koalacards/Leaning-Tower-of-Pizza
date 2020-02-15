@@ -30,6 +30,9 @@ public class BoxCollector : MonoBehaviour
 
     //Array of clouds that can be spawned
     public GameObject[] clouds;
+
+    //Represents the score of the game
+    private int score;
     
 
     // Start is called before the first frame update
@@ -40,6 +43,8 @@ public class BoxCollector : MonoBehaviour
         numScrolls = 0;
         gameOverBool = false;
         StartCoroutine(this.spawnClouds());
+        score = 0;
+        PlayerPrefs.SetInt("score", 0);
     }
 
     // Update is called once per frame
@@ -75,9 +80,14 @@ public class BoxCollector : MonoBehaviour
             if (boxes.Count == 0) {
                 firstBoxCenter = other.gameObject.transform.position.x;
             }
+            //Adds the box to the stack for center of mass measurement
             boxes.Add(other.gameObject);
+            //Allows the pipe to release another box
             PlayerPrefs.SetInt("CanRelease", 0);
             scrollBool = true;
+            //Increments the score
+            score = score + 1;
+            PlayerPrefs.SetInt("score", score);
         }
     }
 

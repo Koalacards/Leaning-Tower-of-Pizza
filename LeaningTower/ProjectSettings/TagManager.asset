@@ -11,6 +11,7 @@ TagManager:
   - CameraScroller
   - Ground
   - CloudCatcher
+  - Balloon
   layers:
   - Default
   - TransparentFX
